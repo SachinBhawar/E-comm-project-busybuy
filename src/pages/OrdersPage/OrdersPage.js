@@ -76,7 +76,7 @@ const OrdersPage = () => {
         );
 
     return (
-        <div className={styles.ordersContainer}>
+        <div>
             <h1>Your Orders</h1>
             {orders.map((order, idx) => {
                 return <OrderTable order={order} key={idx} />;
