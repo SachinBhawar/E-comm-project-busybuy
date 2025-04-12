@@ -77,7 +77,7 @@ const OrdersPage = () => {
 
     return (
         <div>
-            <h1>Your Orders</h1>
+            <h1 style={{ textAlign: "center", marginTop: "2rem" }}>Your Orders</h1>
             {orders.map((order, idx) => {
                 return <OrderTable order={order} key={idx} />;
             })}
