@@ -14,9 +14,9 @@ import styles from "./RegisterPage.module.css";
 
 const RegisterPage = () => {
     // Input refs
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
