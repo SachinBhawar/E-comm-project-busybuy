@@ -57,18 +57,19 @@ function HomePage() {
                 />
             </form>
 
-            <div className="container-fuild mx-2 d-flex flex-column flex-md-row align-items-center align-items-md-start">
-                <div className="d-flex align-items-center col-md-3 col-lg-3 justify-content-center">
+            <div className="container-fluid mx-2 d-flex flex-column flex-md-row align-items-start">
+                {/* Sidebar - Takes up 3 columns on md and lg screens */}
+                <div className="col-md-3 col-lg-3 d-flex align-items-start justify-content-center">
                     <FilterSidebar
                         setPriceRange={setPriceRange}
                         setCategories={setCategories}
                         priceRange={priceRange}
                     />
                 </div>
-                <div className="d-flex align-items-center">
-                    {products.length ? (
-                        <ProductList products={products.length ? filteredProducts : null} />
-                    ) : null}
+
+                {/* Product List - Takes remaining space */}
+                <div className="col-md-9 col-lg-9 d-flex align-items-start">
+                    {products.length ? <ProductList products={filteredProducts} /> : null}
                 </div>
             </div>
         </div>
