@@ -10,68 +10,80 @@ import OrderTable from "../../components/OrderTable/OrderTable";
 import { getUser } from "../../redux/reducers/authReducer";
 
 const OrdersPage = () => {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(false);
+    const [orders, setOrders] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-  const user = useSelector(getUser);
+    const user = useSelector(getUser);
 
-  // Fetch user orders from firestore
-  const getOrders = async () => {
-    setLoading(true);
-    try {
-      const docRef = doc(db, "userOrders", user.uid);
-      const docSnap = await getDoc(docRef);
-      const data = docSnap.data();
+    // Fetch user orders from firestore
+    const getOrders = async () => {
+        setLoading(true);
+        try {
+            const docRef = doc(db, "userOrders", user.uid);
+            const docSnap = await getDoc(docRef);
+            const data = docSnap.data();
 
-      // Display error message if no orders found
-      if (!data) {
-        return toast.error("No Orders Found!");
-      }
+            // Display error message if no orders found
+            if (!data) {
+                return toast.error("No Orders Found!");
+            }
 
-      // Array to store promises
-      let promiseArray = [];
+            // Array to store promises
+            let promiseArray = [];
 
-      // For each order call the getProductsUsingProductIds() and store the promise in the array
-      data.orders.forEach((order) => {
-        promiseArray.push(
-          new Promise((resolve, reject) => {
-            const data = getProductsUsingProductIds(order);
-            if (data) resolve(data);
-            else reject("Something went wrong");
-          })
-        );
-      });
+            // For each order call the getProductsUsingProductIds() and store the promise in the array
+            data.orders.forEach((order) => {
+                promiseArray.push(
+                    new Promise((resolve, reject) => {
+                        const data = getProductsUsingProductIds(order);
+                        if (data) resolve(data);
+                        else reject("Something went wrong");
+                    })
+                );
+            });
 
-      // Resolve all promises and store them in the final orders array
-      const finalOrders = await Promise.all(promiseArray);
-      console.log(finalOrders);
-      setOrders(finalOrders);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
+            // Resolve all promises and store them in the final orders array
+            const finalOrders = await Promise.all(promiseArray);
+            console.log(finalOrders);
+            setOrders(finalOrders);
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        getOrders();
+    }, [user]);
+
+    if (loading) {
+        return <Loader />;
     }
-  };
 
-  useEffect(() => {
-    getOrders();
-  }, [user]);
+    if (!loading && !orders.length)
+        return (
+            <div
+                style={{
+                    margin: "auto",
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}
+            >
+                <h1>No Orders Found!</h1>
+            </div>
+        );
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (!loading && !orders.length)
-    return <h1 style={{ textAlign: "center" }}>No Orders Found!</h1>;
-
-  return (
-    <div className={styles.ordersContainer}>
-      <h1>Your Orders</h1>
-      {orders.map((order, idx) => {
-        return <OrderTable order={order} key={idx} />;
-      })}
-    </div>
-  );
+    return (
+        <div className={styles.ordersContainer}>
+            <h1>Your Orders</h1>
+            {orders.map((order, idx) => {
+                return <OrderTable order={order} key={idx} />;
+            })}
+        </div>
+    );
 };
 
 export default OrdersPage;

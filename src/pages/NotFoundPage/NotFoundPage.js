@@ -1,9 +1,17 @@
 import styles from "./NotFound.module.css";
 
 export default function NotFoundPage() {
-  return (
-    <div className={styles.notFound}>
-      <h1>Page not found</h1>
-    </div>
-  );
+    return (
+        <div
+            style={{
+                margin: "auto",
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                transform: "translate(-50%, -50%)",
+            }}
+        >
+            <h1>Page not found</h1>
+        </div>
+    );
 }
