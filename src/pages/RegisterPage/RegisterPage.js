@@ -14,9 +14,9 @@ import styles from "./RegisterPage.module.css";
 
 const RegisterPage = () => {
     // Input refs
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
+    const nameRef = useRef(null);
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -49,12 +49,12 @@ const RegisterPage = () => {
 
         // Form validation
         if (nameVal === "") return toast.error("Please enter Name.");
-        if (nameVal.length <3) return toast.error("Name should be atleast 3 character long.");
+        if (nameVal.length < 3) return toast.error("Name should be atleast 3 character long.");
 
         if (emailVal === "") return toast.error("Please enter email.");
-        
+
         if (passwordVal === "") return toast.error("Please enter password.");
-        if (passwordVal.length <6) return toast.error("Password should be atleast 6 character long.");
+        if (passwordVal.length < 6) return toast.error("Password should be atleast 6 character long.");
 
         // call the signup function
         dispatch(signup({ name: nameVal, email: emailVal, password: passwordVal }));
