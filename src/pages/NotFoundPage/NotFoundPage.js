@@ -1,5 +1,3 @@
-import styles from "./NotFound.module.css";
-
 export default function NotFoundPage() {
     return (
         <div

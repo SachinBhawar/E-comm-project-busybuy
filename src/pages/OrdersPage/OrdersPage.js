@@ -4,7 +4,6 @@ import { getDoc, doc } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { getProductsUsingProductIds } from "../../utils/utils";
 import Loader from "../../components/UI/Loader/Loader";
-import styles from "./OrdersPage.module.css";
 import { toast } from "react-toastify";
 import OrderTable from "../../components/OrderTable/OrderTable";
 import { getUser } from "../../redux/reducers/authReducer";
