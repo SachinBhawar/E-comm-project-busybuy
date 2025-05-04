@@ -14,7 +14,7 @@
 
 .filterContainer {
     margin-top: 2rem;
-    width: 14rem;
+    min-width: 320px;
     padding: 1rem;
     text-align: center;
     background: #f0f0fc;
