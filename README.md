@@ -2,11 +2,6 @@
 
 This is a fully functional e-commerce application built with **React**, **Redux Toolkit**, and **Firebase**. The app allows users to browse products, manage a shopping cart, and place orders. It provides a smooth user experience with features like user registration, login, and order history.
 
-## 📋 Table of Contents
-
-- [✨ Key Features](#key-features)
-- [💻 Technologies Used](#technologies-used)
-
 ## ✨ Key Features
 
 - **🛍️ Show Products**: Displays a list of available products for users to browse.
