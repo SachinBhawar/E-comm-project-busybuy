@@ -2,6 +2,25 @@ import React from "react";
 import styles from "./FilterSidebar.module.css";
 
 const FilterSidebar = ({ setCategories, setPriceRange, priceRange }) => {
+    const categoryList = [
+        { id: "mensFashion", label: "Men's Clothing" },
+        { id: "womensFashion", label: "Women's Clothing" },
+        { id: "jewelery", label: "Jewelery" },
+        { id: "electronics", label: "Electronics" },
+        { id: "beauty", label: "Beauty" },
+        { id: "mobile-accessories", label: "Mobile Accessories" },
+        { id: "mens-watches", label: "Men's Watches" },
+        { id: "mens-shoes", label: "Men's Shoes" },
+    ];
+
+    const handleCategoryChange = (e) => {
+        const { id, checked } = e.target;
+        setCategories((prev) => ({
+            ...prev,
+            [id]: checked,
+        }));
+    };
+
     return (
         <aside className={styles.filterContainer}>
             <h2>Filter</h2>
@@ -18,64 +37,15 @@ const FilterSidebar = ({ setCategories, setPriceRange, priceRange }) => {
                     onChange={(e) => setPriceRange(e.target.value)}
                     step="10"
                 />
+
                 <h2>Category</h2>
                 <div className={styles.categoryContainer}>
-                    <div className={styles.inputContainer}>
-                        <input
-                            type="checkbox"
-                            id="mensFashion"
-                            name="mensFashion"
-                            onChange={(e) =>
-                                setCategories((prevCategories) => ({
-                                    ...prevCategories,
-                                    mensFashion: e.target.checked,
-                                }))
-                            }
-                        />
-                        <label htmlFor="mensFashion">Men's Clothing</label>
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <input
-                            type="checkbox"
-                            id="womensFashion"
-                            name="womensFashion"
-                            onChange={(e) =>
-                                setCategories((prevCategories) => ({
-                                    ...prevCategories,
-                                    womensFashion: e.target.checked,
-                                }))
-                            }
-                        />
-                        <label htmlFor="womensFashion">Women's Clothing</label>
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <input
-                            type="checkbox"
-                            id="jewelery"
-                            name="jewelery"
-                            onChange={(e) =>
-                                setCategories((prevCategories) => ({
-                                    ...prevCategories,
-                                    jewelery: e.target.checked,
-                                }))
-                            }
-                        />
-                        <label htmlFor="jewelery">Jewelery</label>
-                    </div>
-                    <div className={styles.inputContainer}>
-                        <input
-                            type="checkbox"
-                            id="electronics"
-                            name="electronics"
-                            onChange={(e) =>
-                                setCategories((prevCategories) => ({
-                                    ...prevCategories,
-                                    electronics: e.target.checked,
-                                }))
-                            }
-                        />
-                        <label htmlFor="electronics">Electronics</label>
-                    </div>
+                    {categoryList.map(({ id, label }) => (
+                        <div key={id} className={styles.inputContainer}>
+                            <input type="checkbox" id={id} name={id} onChange={handleCategoryChange} />
+                            <label htmlFor={id}>{label}</label>
+                        </div>
+                    ))}
                 </div>
             </form>
         </aside>
