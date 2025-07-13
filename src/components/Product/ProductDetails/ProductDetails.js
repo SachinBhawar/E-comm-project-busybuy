@@ -3,16 +3,16 @@ import styles from "./ProductDetails.module.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { updateDoc, setDoc } from "firebase/firestore";
-import MinusIcon from "../../../UI/Icons/MinusIcon";
-import PlusIcon from "../../../UI/Icons/PlusIcon";
-import { getUserCartProducts } from "../../../../utils/utils";
+import MinusIcon from "../../UI/Icons/MinusIcon";
+import PlusIcon from "../../UI/Icons/PlusIcon";
+import { getUserCartProducts } from "../../../utils/utils";
 import { useSelector, useDispatch } from "react-redux";
 import {
     filterProductFromCart,
     removeProductFromCart,
     updateProductQuantity,
-} from "../../../../redux/reducers/cartReducer";
-import { getUser } from "../../../../redux/reducers/authReducer";
+} from "../../../redux/reducers/cartReducer";
+import { getUser } from "../../../redux/reducers/authReducer";
 
 const ProductDetails = ({ title, price, productId, onCart, quantity }) => {
     const [productAddingToCart, setProductAddingToCart] = useState(false);

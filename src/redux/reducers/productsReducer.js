@@ -22,37 +22,60 @@ const productsSlice = createSlice({
             const {
                 searchQuery,
                 priceRange,
-                categories: { mensFashion, womensFashion, jewelery, electronics },
+                categories: {
+                    mensFashion,
+                    womensFashion,
+                    jewelery,
+                    electronics,
+                    beauty,
+                    mobileAccessories,
+                    mensWatches,
+                    mensShoes,
+                    fragrances,
+                    furniture,
+                    groceries,
+                    homeDecoration,
+                    kitchenAccessories,
+                    laptops,
+                },
             } = action.payload;
 
             let filteredProducts = state.products;
+
+            // Filter by search query
             if (searchQuery) {
-                filteredProducts = filteredProducts.filter((product) => {
-                    return product.title.toLowerCase().includes(searchQuery.toLowerCase());
-                });
-            }
-            if (mensFashion || womensFashion || jewelery || electronics) {
-                filteredProducts = filteredProducts.filter((product) => {
-                    if (mensFashion && product.category === "men's clothing") {
-                        return true;
-                    }
-                    if (womensFashion && product.category === "women's clothing") {
-                        return true;
-                    }
-                    if (electronics && product.category === "electronics") {
-                        return true;
-                    }
-                    if (jewelery && product.category === "jewelery") {
-                        return true;
-                    }
-                    return false;
-                });
+                filteredProducts = filteredProducts.filter((product) =>
+                    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+                );
             }
 
+            // Filter by selected categories
+            const activeCategories = [];
+
+            if (mensFashion) activeCategories.push("men's clothing");
+            if (womensFashion) activeCategories.push("women's clothing");
+            if (jewelery) activeCategories.push("jewelery");
+            if (electronics) activeCategories.push("electronics");
+            if (beauty) activeCategories.push("beauty");
+            if (mobileAccessories) activeCategories.push("mobile-accessories");
+            if (mensWatches) activeCategories.push("mens-watches");
+            if (mensShoes) activeCategories.push("mens-shoes");
+            if (fragrances) activeCategories.push("fragrances");
+            if (furniture) activeCategories.push("furniture");
+            if (groceries) activeCategories.push("groceries");
+            if (homeDecoration) activeCategories.push("home-decoration");
+            if (kitchenAccessories) activeCategories.push("kitchen-accessories");
+            if (laptops) activeCategories.push("laptops");
+
+            if (activeCategories.length > 0) {
+                filteredProducts = filteredProducts.filter((product) =>
+                    activeCategories.includes(product.category)
+                );
+            }
+
+            // Filter by price range
             if (priceRange) {
-                filteredProducts = filteredProducts.filter((product) => {
-                    return product.price < priceRange;
-                });
+                filteredProducts = filteredProducts.filter((product) => product.price < priceRange);
             }
 
             state.filteredProducts = filteredProducts;

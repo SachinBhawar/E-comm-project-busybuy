@@ -8,9 +8,12 @@ const FilterSidebar = ({ setCategories, setPriceRange, priceRange }) => {
         { id: "jewelery", label: "Jewelery" },
         { id: "electronics", label: "Electronics" },
         { id: "beauty", label: "Beauty" },
-        { id: "mobile-accessories", label: "Mobile Accessories" },
-        { id: "mens-watches", label: "Men's Watches" },
-        { id: "mens-shoes", label: "Men's Shoes" },
+        { id: "mobileAccessories", label: "Mobile Accessories" },
+        { id: "mensWatches", label: "Men's Watches" },
+        { id: "mensShoes", label: "Men's Shoes" },
+        { id: "fragrances", label: "Fragrances" },
+        { id: "furniture", label: "Furniture" },
+        { id: "groceries", label: "Groceries" },
     ];
 
     const handleCategoryChange = (e) => {

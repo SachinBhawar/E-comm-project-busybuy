@@ -19,9 +19,19 @@ function HomePage() {
     const [priceRange, setPriceRange] = useState(75000);
     const [categories, setCategories] = useState({
         mensFashion: false,
-        electronics: false,
+        womensFashion: false,
         jewelery: false,
-        womensClothing: false,
+        electronics: false,
+        beauty: false,
+        mobileAccessories: false,
+        mensWatches: false,
+        mensShoes: false,
+        fragrances: false,
+        furniture: false,
+        groceries: false,
+        homeDecoration: false,
+        kitchenAccessories: false,
+        laptops: false,
     });
 
     const dispatch = useDispatch();
