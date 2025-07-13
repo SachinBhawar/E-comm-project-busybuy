@@ -14,6 +14,9 @@ const FilterSidebar = ({ setCategories, setPriceRange, priceRange }) => {
         { id: "fragrances", label: "Fragrances" },
         { id: "furniture", label: "Furniture" },
         { id: "groceries", label: "Groceries" },
+        // { id: "home-decoration", label: "Home Decoration" },
+        // { id: "kitchen-accessories", label: "Kitchen Accessories" },
+        // { id: "laptops", label: "Laptops" },
     ];
 
     const handleCategoryChange = (e) => {

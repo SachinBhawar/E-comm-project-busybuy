@@ -34,9 +34,9 @@ const productsSlice = createSlice({
                     fragrances,
                     furniture,
                     groceries,
-                    homeDecoration,
-                    kitchenAccessories,
-                    laptops,
+                    // homeDecoration,
+                    // kitchenAccessories,
+                    // laptops,
                 },
             } = action.payload;
 
@@ -63,9 +63,9 @@ const productsSlice = createSlice({
             if (fragrances) activeCategories.push("fragrances");
             if (furniture) activeCategories.push("furniture");
             if (groceries) activeCategories.push("groceries");
-            if (homeDecoration) activeCategories.push("home-decoration");
-            if (kitchenAccessories) activeCategories.push("kitchen-accessories");
-            if (laptops) activeCategories.push("laptops");
+            // if (homeDecoration) activeCategories.push("home-decoration");
+            // if (kitchenAccessories) activeCategories.push("kitchen-accessories");
+            // if (laptops) activeCategories.push("laptops");
 
             if (activeCategories.length > 0) {
                 filteredProducts = filteredProducts.filter((product) =>
